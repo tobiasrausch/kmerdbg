@@ -48,4 +48,4 @@ An example script to generate a count table of non-reference k-mers is included 
 
 ![Non-reference k-mers](https://github.com/tobiasrausch/kmerdbg/blob/main/kmerfreq/vac.png?raw=true)
 
-Using the [1000 Genomes sample table](ftp://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel), one can extract non-reference k-mers by population or singleton k-mers and population-specific k-mers ([stats subdirectory](https://github.com/tobiasrausch/kmerdbg/tree/main/stats)).
+Using the [1000 Genomes sample table](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/release/20130502/integrated_call_samples_v3.20130502.ALL.panel), one can extract non-reference k-mers by population or singleton k-mers and population-specific k-mers ([stats subdirectory](https://github.com/tobiasrausch/kmerdbg/tree/main/stats)).
