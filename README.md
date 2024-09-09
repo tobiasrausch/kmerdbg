@@ -31,3 +31,14 @@ gzip ${ID}.unitigs.fa
 
 The output of BCALM 2 is a set of unitigs (a non-branching path) of the de Bruijn graph. The unitig output format is described [here](https://github.com/GATB/bcalm#output). All 3,202 unitigs have been deposited at the [IGSR](https://www.internationalgenome.org/) FTP site in the [dbg_1kgp directory](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1KG_ONT_VIENNA/release/v1.0/dbg_1kgp/).
 
+## Analysis of non-reference k-mers
+
+We used [dicey](https://github.com/gear-genomics/dicey) and the [hs37d5](https://ftp-trace.ncbi.nih.gov/1000genomes/ftp/technical/reference/phase2_reference_assembly_sequence/hs37d5.fa.gz) reference (GRCh37 coordinates) of the 1000 Genomes project to extract non-reference k-mers for each sample. The k-mer set of the reference needs to be computed only once.
+
+`dicey chop -a -f hs37d5 -l 61 hs37d5.fa.gz`
+
+```
+dicey chop -a -f ${ID} -l 61 ${ID}.unitigs.fa.gz
+sort -k1,1n -k2,2n -m <(zcat hs37d5.kmer.gz) <(zcat hs37d5.kmer.gz) <(zcat ${ID}.hashes.gz) | uniq -u | gzip -c > ${ID}.nonref.kmer.gz
+```
+
