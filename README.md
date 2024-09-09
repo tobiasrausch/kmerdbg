@@ -1,2 +1,33 @@
-# kmerdbg
-Scripts to build and analyze compacted de Bruijn graphs
+# Scripts to build and analyze compacted de Bruijn graphs
+
+## Compacted de Bruijn graphs
+
+We computed compacted de Bruijn graphs for all 3,202 samples from the [1000 Genomes high coverage project](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1000G_2504_high_coverage/). The pipeline is detailed below.
+
+### CRAM to FASTQ conversion
+
+We converted all CRAM files to FASTQ using [samtools](https://github.com/samtools/samtools).
+
+```
+samtools sort -n -o ${ID}.bam ${ID}.final.cram
+samtools fastq -1 ${ID}.1.fq.gz -2 ${ID}.2.fq.gz -0 /dev/null -s /dev/null -n ${ID}.bam
+```
+
+### Kmer-based error correction
+
+We next used [Lighter](https://github.com/mourisl/Lighter) for kmer-based error correction with a k-mer size of 23.
+
+`lighter -r ${ID}.1.fq.gz -r ${ID}.2.fq.gz -trim -discard -k 23 3100000000 0.188`
+
+### Compacted de Bruijn graph construction from error-corrected reads
+
+[BCALM 2](https://github.com/GATB/bcalm) was used to compute the compacted de Bruijn graphs from the kmer-based error corrected reads.
+
+```
+ls -1 ${ID}.*.cor.fq.gz > ${ID}.list_reads
+bcalm -in ${ID}.list_reads -kmer-size 61 -abundance-min 3
+gzip ${ID}.unitigs.fa
+```
+
+The output of BCALM 2 is a set of unitigs (a non-branching path) of the de Bruijn graph. The unitig output format is described [here](https://github.com/GATB/bcalm#output). All 3,202 unitigs have been deposited at the [IGSR](https://www.internationalgenome.org/) FTP site in the [dbg_1kgp directory](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1KG_ONT_VIENNA/release/v1.0/dbg_1kgp/).
+
