@@ -52,3 +52,16 @@ Using the [1000 Genomes sample table](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp
 
 ![Population non-ref k-mers](https://github.com/tobiasrausch/kmerdbg/blob/main/stats/nonref.jpg?raw=true)
 
+Citation
+--------
+
+The compacted de Bruijn graphs have been built as part of the 1000 Genomes long-read sequencing project. If you use them please cite
+
+Siegfried Schloissnig, Samarendra Pani, Bernardo Rodriguez-Martin, Jana Ebler, Carsten Hain, Vasiliki Tsapalou, Arda Söylev, Patrick Hüther, Hufsah Ashraf, Timofey Prodanov, Mila Asparuhova, Sarah Hunt, Tobias Rausch, Tobias Marschall, Jan O Korbel.              
+Long-read sequencing and structural variant characterization in 1,019 samples from the 1000 Genomes Project.
+bioRxiv. 2024 Apr 20:2024.04.18.590093.
+[https://doi.org/10.1101/2024.04.18.590093](https://doi.org/10.1101/2024.04.18.590093)
+
+Credits
+-------
+[HTSlib](https://github.com/samtools/htslib) and [samtools](https://github.com/samtools/samtools) for genomic data processing, [Boost](https://www.boost.org/) for various data structures and algorithms, [Lighter](https://github.com/mourisl/Lighter) for sequencing error correction and [BCALM 2](https://github.com/GATB/bcalm) for the compacted de Bruijn graph construction.
