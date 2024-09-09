@@ -42,3 +42,8 @@ dicey chop -a -f ${ID} -l 61 ${ID}.unitigs.fa.gz
 sort -k1,1n -k2,2n -m <(zcat hs37d5.kmer.gz) <(zcat hs37d5.kmer.gz) <(zcat ${ID}.hashes.gz) | uniq -u | gzip -c > ${ID}.nonref.kmer.gz
 ```
 
+### Non-reference k-mer counts
+
+An example script to generate a count table of non-reference k-mers is included in the [aggegrate subdirectory](https://github.com/tobiasrausch/kmerdbg/aggregate). Based on such a count table `nonref.count.gz`, one can create a classical site-frequency spectra - a log-log plot of the frequency of observed non-reference k-mer counts. Plotting scripts are in the [kmerfreq subdirectory](https://github.com/tobiasrausch/kmerdbg/kmerfreq). 
+
+
