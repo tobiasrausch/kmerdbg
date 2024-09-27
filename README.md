@@ -52,6 +52,16 @@ Using the [1000 Genomes sample table](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp
 
 ![Population non-ref k-mers](https://github.com/tobiasrausch/kmerdbg/blob/main/stats/nonref.jpg?raw=true)
 
+### QV assembly quality evaluation
+
+With the [unitig files](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1KG_ONT_VIENNA/release/v1.0/dbg_1kgp/) you can also estimate the assembly QV quality of matched samples using [yak](https://github.com/lh3/yak).
+
+```
+yak count -k 31 -K1.5g -t 16 -o sample.dbg.yak sample.unitigs.fa.gz
+yak qv -t 16 -p -K 1.5g -l 100k sample.dbg.yak sample.assembly.h1.fa > hap1.yak.qv.seq.txt
+yak qv -t 16 -p -K 1.5g -l 100k sample.dbg.yak sample.assembly.h2.fa > hap2.yak.qv.seq.txt
+```
+
 Citation
 --------
 
